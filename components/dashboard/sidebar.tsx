@@ -12,6 +12,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 // import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -59,6 +60,7 @@ const navItems: NavItem[] = [
 
 export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
   const pathname = usePathname();
+  const { isMobile, setOpenMobile } = useSidebar();
 
   return (
     <Sidebar collapsible="offcanvas" className="lg:border-r-0!" {...props}>
@@ -83,6 +85,9 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
                     isActive={item.href ? pathname === item.href : false}
                     className="h-9"
                     render={<Link href={item.href ?? "#"} />}
+                    onClick={() => {
+                      if (isMobile && item.href) setOpenMobile(false);
+                    }}
                   >
                     <HugeiconsIcon
                       icon={item.icon}
