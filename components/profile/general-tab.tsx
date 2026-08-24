@@ -120,11 +120,11 @@ export function GeneralTab() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-6" noValidate>
-      <section className="flex flex-col sm:flex-row sm:items-center gap-4">
-        <Avatar className="size-20 border border-border">
+    <form onSubmit={handleSubmit} className="grid gap-5 sm:gap-6" noValidate>
+      <section className="flex flex-row items-center gap-4">
+        <Avatar className="size-14 sm:size-20 border border-border shrink-0">
           <AvatarImage src={avatarSrc} alt="" />
-          <AvatarFallback className="text-lg">
+          <AvatarFallback className="text-base sm:text-lg">
             {userProfile.initials}
           </AvatarFallback>
         </Avatar>
@@ -232,7 +232,7 @@ export function GeneralTab() {
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3 border-t pt-4">
+      <div className="flex flex-wrap items-center gap-3 border-t pt-4 sm:pt-5">
         <Button type="submit" size="sm">
           Save changes
         </Button>

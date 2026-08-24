@@ -60,14 +60,18 @@ export function PasswordTab() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="grid gap-6 max-w-md" noValidate>
+    <form
+      onSubmit={handleSubmit}
+      className="grid gap-5 sm:gap-6 max-w-md"
+      noValidate
+    >
       <div className="grid gap-4">
         <PasswordInput
           label="Current password"
           value={values.current}
           onChange={setField("current")}
           error={errors.current}
-          placeholder="Enter your current password"
+          placeholder="Enter current password"
           autoComplete="current-password"
         />
         <PasswordInput
@@ -76,7 +80,7 @@ export function PasswordTab() {
           onChange={setField("next")}
           error={errors.next}
           hint={`At least ${MIN_LENGTH} characters.`}
-          placeholder="Enter a new password"
+          placeholder="Enter new password"
           autoComplete="new-password"
         />
         <PasswordInput
@@ -84,7 +88,7 @@ export function PasswordTab() {
           value={values.confirm}
           onChange={setField("confirm")}
           error={errors.confirm}
-          placeholder="Re-enter the new password"
+          placeholder="Re-enter new password"
           autoComplete="new-password"
         />
       </div>
