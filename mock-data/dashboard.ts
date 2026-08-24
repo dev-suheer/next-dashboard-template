@@ -140,7 +140,7 @@ export interface UserProfile {
 
 export const userProfile: UserProfile = {
   name: "Liam Nolan",
-  email: "ln@taskplus.app",
+  email: "ln@dashboard.app",
   phone: "+1 415 555 0142",
   role: "Product Lead",
   initials: "LN",

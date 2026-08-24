@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Taskplus Dashboard - Square UI",
-  description: "Taskplus dashboard with tasks and projects management",
+  title: "Dashboard - Next",
+  description: "A dashboard template built with Next.js, TypeScript, and Tailwind CSS.",
 };
 
 export default function RootLayout({

@@ -1,6 +1,6 @@
 # Dashboard Starter
 
-A reusable dashboard shell to drop into future projects — Next.js 16, React 19, Tailwind CSS v4, and [Base UI](https://base-ui.com/) primitives. Based on the Square UI "Taskplus" template.
+A reusable dashboard shell to drop into future projects — Next.js 16, React 19, Tailwind CSS v4, and [Base UI](https://base-ui.com/) primitives.
 
 The layout, components, and theming are the point. The task/project content filling it is placeholder demo data, meant to be replaced with whatever the real project needs — there is no backend to configure.
 

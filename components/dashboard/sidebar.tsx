@@ -67,7 +67,7 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader className="px-3 py-4">
         <div className="flex items-center gap-2 w-full">
           <div className="size-8 rounded-md bg-primary flex items-center justify-center text-primary-foreground shrink-0">
-            <span className="text-sm font-bold">T+</span>
+            <span className="text-md font-bold">S</span>
           </div>
           <span className="font-semibold text-base text-sidebar-foreground truncate">
             Dashboard

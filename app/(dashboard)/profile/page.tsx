@@ -6,7 +6,7 @@ import { userProfile } from "@/mock-data/dashboard";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Profile - Taskplus",
+  title: "Profile - Dashboard",
   description: "Manage your account details and password",
 };
 
