@@ -2,8 +2,21 @@
 
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { HugeiconsIcon } from "@hugeicons/react";
-import { Folder01Icon } from "@hugeicons/core-free-icons";
+import {
+  Folder01Icon,
+  UserIcon,
+  Settings01Icon,
+  Logout01Icon,
+} from "@hugeicons/core-free-icons";
 
 export function DashboardHeader() {
   return (
@@ -18,6 +31,44 @@ export function DashboardHeader() {
 
       <div className="flex items-center gap-2 sm:gap-3">
         <ThemeToggle />
+        <DropdownMenu>
+          <DropdownMenuTrigger
+            render={
+              <button
+                type="button"
+                aria-label="Open user menu"
+                className="rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring cursor-pointer focus-visible:ring-offset-2 focus-visible:ring-offset-card"
+              >
+                <Avatar className="size-8 border-2 border-card shrink-0">
+                  <AvatarImage src="/ln.png" alt="" />
+                  <AvatarFallback>LN</AvatarFallback>
+                </Avatar>
+              </button>
+            }
+          />
+          <DropdownMenuContent align="end" className="w-56">
+            <div className="px-2 py-1.5">
+              <p className="text-sm font-medium">LN</p>
+              <p className="text-xs text-muted-foreground truncate">
+                ln@taskplus.app
+              </p>
+            </div>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={UserIcon} className="size-4 mr-2" />
+              Profile
+            </DropdownMenuItem>
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={Settings01Icon} className="size-4 mr-2" />
+              Settings
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>
+              <HugeiconsIcon icon={Logout01Icon} className="size-4 mr-2" />
+              Log out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </header>
   );

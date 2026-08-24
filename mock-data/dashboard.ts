@@ -20,6 +20,25 @@ export const performanceChartData = [
   return { ...d, isHighlight: isMax };
 });
 
+export interface TaskActivityPoint {
+  /** Week-commencing label, e.g. "22 Jan". */
+  week: string;
+  created: number;
+  completed: number;
+}
+
+/** Tasks created vs. closed, week by week. */
+export const taskActivityTrend: TaskActivityPoint[] = [
+  { week: "22 Jan", created: 24, completed: 18 },
+  { week: "29 Jan", created: 31, completed: 22 },
+  { week: "05 Feb", created: 28, completed: 26 },
+  { week: "12 Feb", created: 35, completed: 30 },
+  { week: "19 Feb", created: 30, completed: 33 },
+  { week: "26 Feb", created: 38, completed: 34 },
+  { week: "04 Mar", created: 33, completed: 39 },
+  { week: "11 Mar", created: 41, completed: 42 },
+];
+
 export type ProjectStatus = "in_progress" | "completed" | "on_hold";
 
 export interface TodayTask {

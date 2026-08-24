@@ -12,15 +12,6 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-  DropdownMenuGroup,
-} from "@/components/ui/dropdown-menu";
 // import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -36,10 +27,6 @@ import {
   // ChartLineData01Icon,
   // HelpCircleIcon,
   // Settings01Icon,
-  ArrowDown01Icon,
-  Tick01Icon,
-  Add01Icon,
-  UserIcon,
 } from "@hugeicons/core-free-icons";
 
 type NavItem = {
@@ -73,65 +60,13 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="offcanvas" className="lg:border-r-0!" {...props}>
       <SidebarHeader className="px-3 py-4">
-        <div className="flex items-center justify-between w-full">
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              render={
-                <button className="flex items-center gap-2 outline-none w-full justify-start">
-                  <div className="size-8 rounded-md bg-primary flex items-center justify-center text-primary-foreground shrink-0">
-                    <span className="text-sm font-bold">T+</span>
-                  </div>
-                  <span className="font-semibold text-sidebar-foreground truncate">
-                    Taskplus
-                  </span>
-                  <HugeiconsIcon
-                    icon={ArrowDown01Icon}
-                    className="size-3 text-muted-foreground shrink-0"
-                  />
-                </button>
-              }
-            />
-            <DropdownMenuContent align="start" className="w-56">
-              <DropdownMenuGroup>
-                <p className="text-muted-foreground text-xs font-medium px-2 py-1.5">
-                  Workspaces
-                </p>
-                <DropdownMenuItem>
-                  <div className="size-5 rounded bg-primary/20 mr-2 flex items-center justify-center text-xs font-bold text-primary">
-                    T+
-                  </div>
-                  Taskplus
-                  <HugeiconsIcon icon={Tick01Icon} className="size-4 ml-auto" />
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <div className="size-5 rounded bg-blue-500/20 mr-2 flex items-center justify-center text-xs font-bold text-blue-600 dark:text-blue-400">
-                    M
-                  </div>
-                  Marketing Team
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <div className="size-5 rounded bg-emerald-500/20 mr-2 flex items-center justify-center text-xs font-bold text-emerald-600 dark:text-emerald-400">
-                    D
-                  </div>
-                  Design Studio
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={Add01Icon} className="size-4 mr-2" />
-                Create Workspace
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>
-                <HugeiconsIcon icon={UserIcon} className="size-4 mr-2" />
-                Profile
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-          <Avatar className="size-8 border-2 border-sidebar shrink-0">
-            <AvatarImage src="/ln.png" />
-            <AvatarFallback>LN</AvatarFallback>
-          </Avatar>
+        <div className="flex items-center gap-2 w-full">
+          <div className="size-8 rounded-md bg-primary flex items-center justify-center text-primary-foreground shrink-0">
+            <span className="text-sm font-bold">T+</span>
+          </div>
+          <span className="font-semibold text-base text-sidebar-foreground truncate">
+            Dashboard
+          </span>
         </div>
       </SidebarHeader>
 

@@ -8,6 +8,11 @@ import { StatsCards } from "./stats-cards";
 import { TodaysTasks } from "./todays-tasks";
 import { PerformanceChart } from "./performance-chart";
 import { ProjectsTable } from "./projects-table";
+import { TaskActivityChart } from "./task-activity-chart";
+import { ProjectStatusChart } from "./project-status-chart";
+import { TeamWorkloadChart } from "./team-workload-chart";
+import { ProgressDistributionChart } from "./progress-distribution-chart";
+import { DeadlinesChart } from "./deadlines-chart";
 
 function WelcomeSection() {
   const { userName, tasksDueToday, overdueTasks, upcomingDeadlines } =
@@ -52,6 +57,19 @@ export function DashboardContent() {
           <PerformanceChart />
         </div>
       </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="lg:col-span-2">
+          <TaskActivityChart />
+        </div>
+        <div>
+          <ProjectStatusChart />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+        <TeamWorkloadChart />
+        <ProgressDistributionChart />
+      </div>
+      <DeadlinesChart />
       <ProjectsTable />
       </div>
     </div>
