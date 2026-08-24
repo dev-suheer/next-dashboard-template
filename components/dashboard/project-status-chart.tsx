@@ -20,8 +20,6 @@ import type { ProjectStatus } from "@/mock-data/dashboard";
 const breakdown = getStatusBreakdown();
 const totalProjects = breakdown.reduce((sum, s) => sum + s.count, 0);
 
-// Status colours are reserved and always ship with an icon + label, so hue is
-// never the only thing distinguishing one state from another.
 const statusIcons: Record<ProjectStatus, typeof CircleIcon> = {
   in_progress: CircleIcon,
   completed: Tick01Icon,
@@ -87,8 +85,6 @@ export function ProjectStatusChart() {
         </PieChart>
       </ChartContainer>
 
-      {/* Legend doubles as the table view: every value is readable without
-          hovering, so the tooltip only ever enhances. */}
       <ul className="mt-4 space-y-2">
         {breakdown.map((slice) => (
           <li key={slice.status} className="flex items-center gap-2 text-sm">

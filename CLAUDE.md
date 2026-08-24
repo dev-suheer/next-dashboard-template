@@ -23,9 +23,9 @@ There is no backend, no API routes, no server code, and no data fetching. Every 
 
 ## Architecture
 
-**Page composition** — [app/page.tsx](app/page.tsx) is the only route and stays a server component. It wraps everything in `SidebarProvider` and lays out a fixed shell: sidebar + a bordered card holding the header and a scrolling `<main>`. All content lives under [components/dashboard/](components/dashboard/), where `content.tsx` composes `WelcomeSection`, `StatsCards`, `TodaysTasks`, `PerformanceChart`, and `ProjectsTable`.
+**Page composition** — routes live in the `app/(dashboard)/` route group; the group name is not in the URL. [app/(dashboard)/layout.tsx](app/(dashboard)/layout.tsx) owns the app shell — `SidebarProvider` + sidebar + a bordered card holding the header and a scrolling `<main>` — so pages supply content only. Current routes are `/` ([page.tsx](app/(dashboard)/page.tsx) → `DashboardContent`) and `/profile`. Both pages stay server components. `components/dashboard/content.tsx` composes the dashboard sections: `WelcomeSection`, `StatsCards`, `TodaysTasks`, `PerformanceChart`, the five chart cards, and `ProjectsTable`.
 
-**Data flow** — [mock-data/dashboard.ts](mock-data/dashboard.ts) exports plain consts plus the `Project` / `TodayTask` / `ProjectStatus` types. Components import those consts directly and filter them client-side in `useMemo`. The zustand store in [store/dashboard-store.ts](store/dashboard-store.ts) holds **only UI filter state** (search strings, project filter, status filter) — never the data. To add a filter: add the state + setter to the store, then apply it in the consuming component's `useMemo`.
+**Data flow** — [mock-data/dashboard.ts](mock-data/dashboard.ts) exports plain consts plus the `Project` / `TodayTask` / `ProjectStatus` / `UserProfile` types. Components import those consts directly and filter them client-side in `useMemo`. Chart series that are *derived* rather than filtered live in [lib/dashboard-metrics.ts](lib/dashboard-metrics.ts) as pure functions of `projects` (status breakdown, team workload, progress buckets, deadlines by week) — keep chart components presentational and add new derivations there, so swapping the mock source for an API touches one import. The zustand store in [store/dashboard-store.ts](store/dashboard-store.ts) holds **only UI filter state** (search strings, project filter, status filter) — never the data. To add a filter: add the state + setter to the store, then apply it in the consuming component's `useMemo`.
 
 Subscribe with one selector per value (`useDashboardStore((s) => s.projectStatusFilter)`), never by destructuring `useDashboardStore()` — the latter re-renders on every unrelated store change.
 
@@ -37,11 +37,20 @@ Subscribe with one selector per value (`useDashboardStore((s) => s.projectStatus
 
 **Sidebar** — collapsible, toggled by `Cmd/Ctrl + B`, persisting its open state in a `sidebar_state` cookie; below the `useIsMobile()` breakpoint it renders as a Sheet instead.
 
-**Tables and charts** — `ProjectsTable` uses TanStack Table (core + filtered + pagination row models) with `ColumnDef`s defined inline in the component. Charts use recharts through the [components/ui/chart.tsx](components/ui/chart.tsx) wrapper, which injects per-theme CSS variables from a `ChartConfig`; pass series colors as `var(--color-<key>)`.
+**Tables and charts** — `ProjectsTable` uses TanStack Table (core + filtered + pagination row models) with `ColumnDef`s defined inline in the component. Charts use recharts through the [components/ui/chart.tsx](components/ui/chart.tsx) wrapper, which injects per-theme CSS variables from a `ChartConfig`; pass series colors as `var(--color-<key>)`. `ChartCard` in [components/dashboard/chart-card.tsx](components/dashboard/chart-card.tsx) supplies the shared card chrome.
+
+**Chart color is a validated system, not taste.** `globals.css` carries three separate token families, and which one a chart uses is determined by the job its color does:
+
+- `--chart-1..5` — **categorical**, for series *identity*. Assign in fixed order, never cycle or re-order (the order is what makes it colorblind-safe).
+- `--status-good/warning/serious/critical` — **status**, reserved meaning, identical in both modes, never reused as a series color, and always shipped with an icon or label so hue is never the sole carrier.
+- `--ramp-1..5` — a single-hue **ordinal** ramp for ordered buckets, where lightness carries the order.
+
+A single series takes slot 1 for every mark and gets no legend; never color nominal bars by their own value. These values were produced by the `dataviz` skill's validator (`scripts/validate_palette.js`) — the stock shadcn `--chart-*` tokens were replaced because they failed it outright (light-mode slots 4 and 5 were ΔE 7.4 apart, indistinguishable even with normal color vision). **If you change a chart color, re-run that validator for both modes rather than eyeballing it.** Other standing rules already applied here: solid hairline gridlines (never dashed), bars capped at 24px with 4px rounded data-ends, 2px lines, area fills at ~10% opacity, selective direct labels instead of a number on every point, and chart container heights that include the x-axis band.
 
 ## Conventions
 
 - Path alias `@/*` maps to the repo root (`@/components`, `@/lib/utils`, `@/hooks`, `@/mock-data`, `@/store`).
-- Everything under `components/dashboard/` is `"use client"` (zustand + hooks). `app/page.tsx` and `app/layout.tsx` stay server components.
+- Everything under `components/dashboard/` and `components/profile/` is `"use client"` (zustand, hooks, form state). The `app/` files stay server components.
+- Profile forms are plain controlled React state — no form library is installed. There is no backend, so "Save changes" and "Update password" validate and then update local state only.
 - Project owner avatars come from `https://api.dicebear.com/9.x/glass/svg?seed=...` via the `ownerAvatarSeed` field.
 - Deploys to Vercel; `vercel.json` skips the build when the last commit touched nothing in the project (`git diff --quiet HEAD^ HEAD .`).

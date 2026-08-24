@@ -12,9 +12,6 @@ import { getProgressDistribution } from "@/lib/dashboard-metrics";
 
 const distribution = getProgressDistribution();
 
-// Completion buckets are ordinal — reordering them would change the meaning —
-// so they take a single-hue ramp with monotone lightness rather than
-// categorical hues. The colour carries the order; it does not claim identity.
 const chartConfig = {
   count: { label: "Projects" },
 } satisfies ChartConfig;
@@ -48,7 +45,6 @@ export function ProgressDistributionChart() {
             {distribution.map((bucket) => (
               <Cell key={bucket.label} fill={bucket.fill} />
             ))}
-            {/* Value on the cap, so the y-axis can stay hidden. */}
             <LabelList
               dataKey="count"
               position="top"

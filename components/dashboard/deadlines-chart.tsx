@@ -17,8 +17,6 @@ const busiest = deadlines.reduce(
 );
 const peakIndex = deadlines.indexOf(busiest);
 
-// A single series: one hue, and no legend box — the title already says what is
-// plotted. Only the peak is direct-labelled; the axis and tooltip carry the rest.
 const chartConfig = {
   due: { label: "Deadlines", color: "var(--chart-1)" },
 } satisfies ChartConfig;

@@ -18,7 +18,6 @@ import {
 import { ChartCard } from "./chart-card";
 import { taskActivityTrend } from "@/mock-data/dashboard";
 
-// Two distinct series -> categorical slots 1 and 2, in fixed order.
 const chartConfig = {
   created: { label: "Created", color: "var(--chart-1)" },
   completed: { label: "Completed", color: "var(--chart-2)" },
@@ -40,8 +39,6 @@ export function TaskActivityChart() {
           {net} vs. created)
         </span>
       </div>
-      {/* Height covers the plot plus the x-axis band so the card never
-          grows its own nested scrollbar. */}
       <ChartContainer config={chartConfig} className="h-[240px] w-full">
         <LineChart
           data={taskActivityTrend}
@@ -64,8 +61,6 @@ export function TaskActivityChart() {
             allowDecimals={false}
           />
           <ChartTooltip content={<ChartTooltipContent indicator="line" />} />
-          {/* The two series converge at the right edge, so end-labels would
-              collide — the legend and tooltip carry identity instead. */}
           <ChartLegend content={<ChartLegendContent />} />
           <Line
             dataKey="created"

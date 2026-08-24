@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Sidebar,
   SidebarContent,
@@ -32,7 +33,7 @@ import {
 type NavItem = {
   title: string;
   icon: React.ComponentProps<typeof HugeiconsIcon>["icon"];
-  isActive?: boolean;
+  href?: string;
   shortcut?: string;
   iconColor?: string;
 };
@@ -45,7 +46,7 @@ const navItems: NavItem[] = [
   {
     title: "Dashboard",
     icon: DashboardSquare01Icon,
-    isActive: true,
+    href: "/",
     iconColor: "text-primary",
   },
   { title: "Inbox", icon: Mail01Icon, iconColor: "text-cyan-500" },
@@ -57,6 +58,8 @@ const navItems: NavItem[] = [
 ];
 
 export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname();
+
   return (
     <Sidebar collapsible="offcanvas" className="lg:border-r-0!" {...props}>
       <SidebarHeader className="px-3 py-4">
@@ -77,9 +80,9 @@ export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {
               {navItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
-                    isActive={item.isActive}
+                    isActive={item.href ? pathname === item.href : false}
                     className="h-9"
-                    render={<Link href="#" />}
+                    render={<Link href={item.href ?? "#"} />}
                   >
                     <HugeiconsIcon
                       icon={item.icon}

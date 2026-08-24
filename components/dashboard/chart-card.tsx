@@ -1,9 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Shared chrome for the dashboard's chart cards, matching the header/body
- * structure the existing task and performance cards use.
- */
 export function ChartCard({
   title,
   description,

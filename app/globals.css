@@ -72,23 +72,17 @@
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  /* Categorical series slots — fixed order (the order is the CVD-safety
-     mechanism, never cycle or re-order). Validated light: worst adjacent
-     CVD ΔE 9.1, normal-vision ΔE 19.6. */
-  --chart-1: #2a78d6; /* blue */
-  --chart-2: #eb6834; /* orange */
-  --chart-3: #1baf7a; /* aqua */
-  --chart-4: #eda100; /* yellow */
-  --chart-5: #e87ba4; /* magenta */
+  --chart-1: #2a78d6;
+  --chart-2: #eb6834;
+  --chart-3: #1baf7a;
+  --chart-4: #eda100;
+  --chart-5: #e87ba4;
 
-  /* Status — reserved meaning, identical in both modes. Never reused as a
-     series color; always shipped with an icon + label. */
   --status-good: #0ca30c;
   --status-warning: #fab219;
   --status-serious: #ec835a;
   --status-critical: #d03b3b;
 
-  /* Ordinal ramp (single hue, monotone lightness) for ordered buckets. */
   --ramp-1: #86b6ef;
   --ramp-2: #5598e7;
   --ramp-3: #2a78d6;
@@ -124,16 +118,12 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  /* Same eight hues re-stepped for the dark surface — a selected dark
-     palette, not an automatic flip. Validated dark: worst adjacent CVD
-     ΔE 8.4, normal-vision ΔE 19.3, all slots >= 3:1 on the card surface. */
   --chart-1: #3987e5;
   --chart-2: #d95926;
   --chart-3: #199e70;
   --chart-4: #c98500;
   --chart-5: #d55181;
 
-  /* Ordinal ramp flips its anchor in dark: "more" reads lighter. */
   --ramp-1: #184f95;
   --ramp-2: #256abf;
   --ramp-3: #3987e5;

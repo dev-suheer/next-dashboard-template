@@ -21,13 +21,11 @@ export const performanceChartData = [
 });
 
 export interface TaskActivityPoint {
-  /** Week-commencing label, e.g. "22 Jan". */
   week: string;
   created: number;
   completed: number;
 }
 
-/** Tasks created vs. closed, week by week. */
 export const taskActivityTrend: TaskActivityPoint[] = [
   { week: "22 Jan", created: 24, completed: 18 },
   { week: "29 Jan", created: 31, completed: 22 },
@@ -130,6 +128,25 @@ const projectSeeds: Omit<Project, "id">[] = [
 ];
 
 export const projects: Project[] = projectSeeds.map((p, i) => ({ ...p, id: `p${i + 1}` }));
+
+export interface UserProfile {
+  name: string;
+  email: string;
+  phone: string;
+  role: string;
+  initials: string;
+  avatarUrl: string;
+}
+
+export const userProfile: UserProfile = {
+  name: "Liam Nolan",
+  email: "ln@taskplus.app",
+  phone: "+1 415 555 0142",
+  role: "Product Lead",
+  initials: "LN",
+  avatarUrl:
+    "https://api.dicebear.com/9.x/notionists/svg?seed=Liam%20Nolan&backgroundColor=c0aede",
+};
 
 export const welcomeSummary = {
   userName: "LN",
