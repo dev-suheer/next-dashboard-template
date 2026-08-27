@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { CheckmarkCircle02Icon } from "@hugeicons/core-free-icons";
-import { PasswordInput } from "./password-input";
+import { PasswordInput } from "@/components/ui/password-input";
 
 const MIN_LENGTH = 8;
 

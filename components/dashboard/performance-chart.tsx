@@ -67,7 +67,6 @@ export function PerformanceChart() {
     setSmoothCurve(true);
   };
 
-  // Pour l'instant, on garde les mêmes données quel que soit period
   const data = performanceChartData;
 
   return (

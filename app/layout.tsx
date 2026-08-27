@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { appConfig } from "@/lib/config";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard - Next",
-  description: "A dashboard template built with Next.js, TypeScript, and Tailwind CSS.",
+  title: {
+    default: appConfig.name,
+    template: `%s · ${appConfig.name}`,
+  },
+  description: appConfig.description,
 };
 
 export default function RootLayout({

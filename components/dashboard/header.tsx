@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -20,10 +20,18 @@ import {
   Logout01Icon,
 } from "@hugeicons/core-free-icons";
 import { userProfile } from "@/mock-data/dashboard";
+import { LOGIN_ROUTE, signOut } from "@/lib/auth";
 
 export function DashboardHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const section = pathname === "/profile" ? "Profile" : "Dashboard";
+
+  function handleSignOut() {
+    signOut();
+    router.replace(LOGIN_ROUTE);
+    router.refresh();
+  }
 
   return (
     <header className="flex items-center justify-between gap-4 px-4 sm:px-6 py-3 border-b bg-card sticky top-0 z-10 w-full shrink-0">
@@ -69,7 +77,7 @@ export function DashboardHeader() {
               Settings
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut}>
               <HugeiconsIcon icon={Logout01Icon} className="size-4 mr-2" />
               Log out
             </DropdownMenuItem>

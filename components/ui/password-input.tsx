@@ -15,6 +15,7 @@ export function PasswordInput({
   hint,
   placeholder,
   autoComplete,
+  labelAction,
 }: {
   label: string;
   value: string;
@@ -23,6 +24,7 @@ export function PasswordInput({
   hint?: string;
   placeholder?: string;
   autoComplete?: string;
+  labelAction?: React.ReactNode;
 }) {
   const id = useId();
   const hintId = `${id}-hint`;
@@ -30,7 +32,10 @@ export function PasswordInput({
 
   return (
     <div className="grid gap-2">
-      <Label htmlFor={id}>{label}</Label>
+      <div className="flex items-center justify-between gap-2">
+        <Label htmlFor={id}>{label}</Label>
+        {labelAction}
+      </div>
       <div className="relative">
         <Input
           id={id}

@@ -1,3 +1,5 @@
+import { appConfig } from "@/lib/config";
+
 export const dashboardStats = {
   totalProjects: { value: 15, change: 5 },
   totalTasks: { value: 10, change: 2 },
@@ -140,7 +142,7 @@ export interface UserProfile {
 
 export const userProfile: UserProfile = {
   name: "Liam Nolan",
-  email: "ln@dashboard.app",
+  email: `ln@${appConfig.domain}`,
   phone: "+1 415 555 0142",
   role: "Product Lead",
   initials: "LN",
