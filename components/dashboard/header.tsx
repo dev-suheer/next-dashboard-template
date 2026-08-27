@@ -22,10 +22,16 @@ import {
 import { userProfile } from "@/mock-data/dashboard";
 import { LOGIN_ROUTE, signOut } from "@/lib/auth";
 
+const sectionTitles: Record<string, string> = {
+  "/": "Dashboard",
+  "/profile": "Profile",
+  "/faq": "FAQs",
+};
+
 export function DashboardHeader() {
   const pathname = usePathname();
   const router = useRouter();
-  const section = pathname === "/profile" ? "Profile" : "Dashboard";
+  const section = sectionTitles[pathname] ?? "Dashboard";
 
   function handleSignOut() {
     signOut();

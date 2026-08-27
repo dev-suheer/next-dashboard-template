@@ -18,6 +18,7 @@ import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   DashboardSquare01Icon,
+  HelpCircleIcon,
   Mail01Icon,
   Task01Icon,
 } from "@hugeicons/core-free-icons";
@@ -39,6 +40,12 @@ const navItems: NavItem[] = [
   },
   { title: "Inbox", icon: Mail01Icon, iconColor: "text-cyan-500" },
   { title: "Project", icon: Task01Icon, iconColor: "text-emerald-500" },
+  {
+    title: "FAQ",
+    icon: HelpCircleIcon,
+    href: "/faq",
+    iconColor: "text-sky-500",
+  },
 ];
 
 export function DashboardSidebar(props: React.ComponentProps<typeof Sidebar>) {

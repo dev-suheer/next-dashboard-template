@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { AUTH_COOKIE, AUTH_ROUTES, AFTER_LOGIN_ROUTE, LOGIN_ROUTE } from "@/lib/auth";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isSignedIn = request.cookies.get(AUTH_COOKIE)?.value === "1";
   const isAuthRoute = AUTH_ROUTES.some(
