@@ -1,7 +1,12 @@
 "use client";
 
-import { useId, useState } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsiblePanel,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
@@ -9,15 +14,8 @@ import {
   Delete02Icon,
   PencilEdit02Icon,
 } from "@hugeicons/core-free-icons";
-import type { Faq, FaqCategory } from "@/mock-data/faqs";
-
-const categoryStyles: Record<FaqCategory, string> = {
-  General: "bg-muted text-muted-foreground",
-  Projects: "bg-chart-1/10 text-chart-1",
-  Tasks: "bg-chart-3/10 text-chart-3",
-  Team: "bg-chart-4/10 text-chart-4",
-  Billing: "bg-chart-5/10 text-chart-5",
-};
+import { categoryStyles } from "./category-styles";
+import type { Faq } from "@/mock-data/faqs";
 
 export function FaqItem({
   faq,
@@ -30,12 +28,20 @@ export function FaqItem({
   onEdit: () => void;
   onDelete: () => void;
 }) {
-  const panelId = useId();
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-xl border border-border bg-card transition-colors hover:border-ring/40">
-      <div className="flex items-start gap-3 p-4">
+    <Collapsible
+      open={open}
+      onOpenChange={setOpen}
+      render={
+        <div className="rounded-xl border border-border bg-card transition-colors hover:border-ring/40" />
+      }
+    >
+      <div
+        onClick={() => setOpen((v) => !v)}
+        className="flex items-start gap-3 p-4 cursor-pointer"
+      >
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
@@ -51,20 +57,15 @@ export function FaqItem({
             </span>
           </div>
 
-          <button
-            type="button"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls={panelId}
-            className="mt-1.5 flex w-full items-start gap-2 text-left cursor-pointer"
-          >
-            <span className="text-sm sm:text-base font-medium text-pretty">
-              {faq.question}
-            </span>
-          </button>
+          <p className="mt-1.5 text-sm sm:text-base font-medium text-pretty">
+            {faq.question}
+          </p>
         </div>
 
-        <div className="flex shrink-0 items-center gap-0.5">
+        <div
+          onClick={(event) => event.stopPropagation()}
+          className="flex shrink-0 items-center gap-0.5"
+        >
           <Button
             type="button"
             variant="ghost"
@@ -84,33 +85,38 @@ export function FaqItem({
           >
             <HugeiconsIcon icon={Delete02Icon} className="size-4" />
           </Button>
-          <Button
-            type="button"
-            variant="ghost"
-            size="icon-sm"
-            onClick={() => setOpen((v) => !v)}
-            aria-expanded={open}
-            aria-controls={panelId}
-            aria-label={open ? `Collapse FAQ ${index}` : `Expand FAQ ${index}`}
+          <CollapsibleTrigger
+            render={
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon-sm"
+                aria-label={
+                  open
+                    ? `Collapse FAQ ${index}: ${faq.question}`
+                    : `Expand FAQ ${index}: ${faq.question}`
+                }
+              />
+            }
           >
             <HugeiconsIcon
               icon={ArrowDown01Icon}
               className={cn(
-                "size-4 transition-transform duration-200",
+                "size-4 transition-transform duration-250 ease-out",
                 open && "rotate-180"
               )}
             />
-          </Button>
+          </CollapsibleTrigger>
         </div>
       </div>
 
-      {open && (
-        <div id={panelId} className="border-t px-4 py-3">
+      <CollapsiblePanel>
+        <div className="border-t px-4 py-3">
           <p className="text-sm text-muted-foreground text-pretty">
             {faq.answer}
           </p>
         </div>
-      )}
-    </div>
+      </CollapsiblePanel>
+    </Collapsible>
   );
 }
