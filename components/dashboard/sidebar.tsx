@@ -19,8 +19,6 @@ import { HugeiconsIcon } from "@hugeicons/react";
 import {
   DashboardSquare01Icon,
   HelpCircleIcon,
-  Mail01Icon,
-  Task01Icon,
 } from "@hugeicons/core-free-icons";
 
 type NavItem = {
@@ -38,8 +36,6 @@ const navItems: NavItem[] = [
     href: "/",
     iconColor: "text-primary",
   },
-  { title: "Inbox", icon: Mail01Icon, iconColor: "text-cyan-500" },
-  { title: "Project", icon: Task01Icon, iconColor: "text-emerald-500" },
   {
     title: "FAQ",
     icon: HelpCircleIcon,

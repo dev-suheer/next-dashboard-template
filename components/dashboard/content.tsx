@@ -45,32 +45,32 @@ function WelcomeSection() {
 
 export function DashboardContent() {
   return (
-    <div className="w-full overflow-y-auto overflow-x-hidden p-4 h-full">
-      <div className="mx-auto w-full space-y-6">
-      <WelcomeSection />
-      <StatsCards />
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-        <div className="lg:col-span-2">
-          <TodaysTasks />
+    <div className="w-full overflow-y-auto overflow-x-hidden px-4 sm:px-6 lg:px-8 py-4 h-full">
+      <div className="w-full space-y-6 mt-4">
+        <WelcomeSection />
+        <StatsCards />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="lg:col-span-2">
+            <TodaysTasks />
+          </div>
+          <div>
+            <PerformanceChart />
+          </div>
         </div>
-        <div>
-          <PerformanceChart />
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="lg:col-span-2">
+            <TaskActivityChart />
+          </div>
+          <div>
+            <ProjectStatusChart />
+          </div>
         </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-        <div className="lg:col-span-2">
-          <TaskActivityChart />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <TeamWorkloadChart />
+          <ProgressDistributionChart />
         </div>
-        <div>
-          <ProjectStatusChart />
-        </div>
-      </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-        <TeamWorkloadChart />
-        <ProgressDistributionChart />
-      </div>
-      <DeadlinesChart />
-      <ProjectsTable />
+        <DeadlinesChart />
+        <ProjectsTable />
       </div>
     </div>
   );
