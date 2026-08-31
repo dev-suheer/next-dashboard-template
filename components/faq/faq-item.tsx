@@ -40,7 +40,7 @@ export function FaqItem({
     >
       <div
         onClick={() => setOpen((v) => !v)}
-        className="flex items-start gap-3 p-4 cursor-pointer"
+        className="flex items-start gap-3 sm:gap-4 px-4 sm:px-5 py-4 cursor-pointer"
       >
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
@@ -111,7 +111,7 @@ export function FaqItem({
       </div>
 
       <CollapsiblePanel>
-        <div className="border-t px-4 py-3">
+        <div className="border-t px-4 sm:px-5 py-3">
           <p className="text-sm text-muted-foreground text-pretty">
             {faq.answer}
           </p>

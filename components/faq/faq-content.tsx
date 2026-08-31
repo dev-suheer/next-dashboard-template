@@ -82,7 +82,7 @@ export function FaqContent() {
   const tabs: Tab[] = ["All", ...faqCategories];
 
   return (
-    <div className="w-full overflow-y-auto overflow-x-hidden p-4 h-full">
+    <div className="w-full overflow-y-auto overflow-x-hidden px-4 sm:px-6 lg:px-8 py-4 h-full">
       <div className="w-full space-y-6 mt-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div className="min-w-0">
